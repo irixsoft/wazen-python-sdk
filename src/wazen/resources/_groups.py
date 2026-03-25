@@ -51,7 +51,7 @@ class Groups(SyncResource):
     def get_requests(self, session_id: str, group_id: str) -> list[dict[str, Any]]:
         return self._client.request_list("GET", f"/sessions/{session_id}/groups/{group_id}/requests")
 
-    def manage_requests(self, session_id: str, group_id: str, *, participants: list[str], action: str) -> list[dict[str, Any]]:
+    def manage_requests(self, session_id: str, group_id: str, *, participants: list[str], action: str) -> dict[str, Any]:
         return self._client.request("POST", f"/sessions/{session_id}/groups/{group_id}/requests", body={"participants": participants, "action": action})
 
     def get_invite_info(self, session_id: str, *, code: str) -> dict[str, Any]:
@@ -107,8 +107,8 @@ class AsyncGroups(AsyncResource):
     async def get_requests(self, session_id: str, group_id: str) -> list[dict[str, Any]]:
         return await self._client.request_list("GET", f"/sessions/{session_id}/groups/{group_id}/requests")
 
-    async def manage_requests(self, session_id: str, group_id: str, *, participants: list[str], action: str) -> list[dict[str, Any]]:
-        return await self._client.request_list("POST", f"/sessions/{session_id}/groups/{group_id}/requests", query=None)
+    async def manage_requests(self, session_id: str, group_id: str, *, participants: list[str], action: str) -> dict[str, Any]:
+        return await self._client.request("POST", f"/sessions/{session_id}/groups/{group_id}/requests", body={"participants": participants, "action": action})
 
     async def get_invite_info(self, session_id: str, *, code: str) -> dict[str, Any]:
         return await self._client.request("GET", f"/sessions/{session_id}/groups/invite-info", query={"code": code})
