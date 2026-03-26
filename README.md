@@ -70,7 +70,7 @@ wazen.messages.list("session-id", direction="outgoing", limit=10)
 wazen.messages.get("session-id", "message-id")
 ```
 
-### Groups (Pro+)
+### Groups
 
 ```python
 wazen.groups.list("session-id")
@@ -82,7 +82,7 @@ wazen.groups.manage_participants("session-id", "group-id", action="add", partici
 wazen.groups.send_message("session-id", "group-id", type="text", content="Hello group!")
 ```
 
-### Channels (Pro+)
+### Channels
 
 ```python
 wazen.channels.create("session-id", name="Product Updates", description="Latest news")
@@ -95,7 +95,7 @@ wazen.channels.send_message("session-id", "channel-id", type="text", content="Ne
 # Check single number
 wazen.contacts.check("session-id", phone="+1234567890")
 
-# Bulk check (Pro+)
+# Bulk check
 wazen.contacts.bulk_check("session-id", phones=["+1234567890", "+0987654321"])
 ```
 
