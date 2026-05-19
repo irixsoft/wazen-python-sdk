@@ -91,6 +91,18 @@ class SyncHttpClient:
         body = _handle_response(self._execute(method, path, query=query))
         return body["data"]
 
+    def request_bytes(
+        self,
+        method: str,
+        path: str,
+        *,
+        query: dict[str, Any] | None = None,
+    ) -> bytes:
+        response = self._execute(method, path, query=query)
+        if response.status_code >= 400:
+            _handle_response(response)
+        return response.content
+
     def close(self) -> None:
         self._client.close()
 
@@ -158,6 +170,18 @@ class AsyncHttpClient:
     ) -> list[dict[str, Any]]:
         body = _handle_response(await self._execute(method, path, query=query))
         return body["data"]
+
+    async def request_bytes(
+        self,
+        method: str,
+        path: str,
+        *,
+        query: dict[str, Any] | None = None,
+    ) -> bytes:
+        response = await self._execute(method, path, query=query)
+        if response.status_code >= 400:
+            _handle_response(response)
+        return response.content
 
     async def close(self) -> None:
         await self._client.aclose()

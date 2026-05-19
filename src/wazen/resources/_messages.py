@@ -44,6 +44,9 @@ class Messages(SyncResource):
     def get(self, session_id: str, message_id: str) -> dict[str, Any]:
         return self._client.request("GET", f"/sessions/{session_id}/messages/{message_id}")
 
+    def get_media(self, session_id: str, message_id: str) -> bytes:
+        return self._client.request_bytes("GET", f"/sessions/{session_id}/messages/{message_id}/media")
+
 
 class AsyncMessages(AsyncResource):
     async def send(
@@ -82,3 +85,6 @@ class AsyncMessages(AsyncResource):
 
     async def get(self, session_id: str, message_id: str) -> dict[str, Any]:
         return await self._client.request("GET", f"/sessions/{session_id}/messages/{message_id}")
+
+    async def get_media(self, session_id: str, message_id: str) -> bytes:
+        return await self._client.request_bytes("GET", f"/sessions/{session_id}/messages/{message_id}/media")

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- API now returns `mime_type`, `file_size`, `file_name` on inbound media messages — these surface automatically in the returned dict (no SDK code change required to read them)
+- Add `messages.get_media(session_id, message_id)` and async equivalent, returning raw media bytes
+
 ## 0.2.0
 
 - All features now available on all plans (removed Pro+ tier restrictions)
