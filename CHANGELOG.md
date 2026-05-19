@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+- API now returns `sender_lid`, `from_phone_number`, `from_display_name` on inbound messages — these surface automatically in the returned dict (no SDK code change required to read them)
+- `from_phone_number` is the actual sender phone number resolved from the Baileys v7 LID identifier (`*@lid`) seen in `from_jid`
+- For group messages, `sender_lid` and `from_phone_number` identify the individual participant (`from_jid` remains the group JID)
+
 ## 0.3.0
 
 - API now returns `mime_type`, `file_size`, `file_name` on inbound media messages — these surface automatically in the returned dict (no SDK code change required to read them)
